@@ -1,0 +1,59 @@
+body.menu-active .ui header{align-items:center}
+body.menu-active .claire-mark{writing-mode:horizontal-tb;font-family:ui-monospace,"SF Mono","SFMono-Regular",Menlo,monospace;font-weight:300;line-height:1.15}
+.menu-page{min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:flex-start;padding:clamp(180px,25vh,240px) max(7vw,28px) 100px;background:var(--page-bg);color:var(--color-text-primary);pointer-events:auto}
+.menu-list{width:min(1200px,100%);margin:0 auto}
+.menu-group{width:fit-content;max-width:100%;padding:12px 0}
+.menu-group h2{margin:0;font-weight:300}
+.menu-heading{display:block;border:0;background:none;color:inherit;font-family:"Noto Sans","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(30px,3.5vw,52px);font-weight:300;font-style:normal;line-height:1.4;letter-spacing:-.035em;padding:0;text-align:left;cursor:pointer}
+.menu-children[hidden]{display:none}
+.menu-children ul{list-style:none;margin:0;padding:18px 0 12px 3px;display:grid;gap:13px}
+.menu-child{display:inline-block;color:var(--color-text-muted);font-family:"Roboto","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(15px,1.3vw,19px);line-height:1.6;letter-spacing:.015em;cursor:default;transition:color .18s ease,text-shadow .18s ease}
+.menu-child:hover,.menu-child:focus-visible{color:var(--color-text-primary);text-shadow:0 0 9px color-mix(in srgb,var(--color-text-primary) 65%,transparent),0 0 22px color-mix(in srgb,var(--color-text-primary) 25%,transparent)}
+.menu-heading:focus-visible,.menu-child:focus-visible{outline:1px solid var(--color-text-muted);outline-offset:7px;border-radius:2px}
+@media(max-width:640px){.menu-page{padding:130px 7% 90px;align-items:flex-start}.menu-list{margin-top:7vh}.menu-group{padding:15px 0}.menu-heading{font-size:clamp(23px,5.7vw,34px)}.menu-children ul{gap:14px;padding-top:18px}.menu-child{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.menu-child{transition:none}}
+
+/* Stable resting position: the middle heading is centered vertically. */
+.menu-page{--menu-title-size:clamp(30px,3.5vw,52px);padding-top:calc(50svh - var(--menu-title-size) * 2.1 - 36px)}
+.menu-heading{font-family:"Songti SC","Noto Serif CJK SC",serif;font-weight:400;font-size:calc(var(--menu-title-size) * .8);color:var(--color-text-primary);letter-spacing:0}
+.menu-children{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .55s cubic-bezier(.22,1,.36,1),opacity .3s ease}
+.menu-children-inner{min-height:0;overflow:hidden}
+.menu-group.is-open .menu-children{grid-template-rows:1fr;opacity:1}
+.menu-children li{opacity:0;transform:translateY(-9px);transition:opacity .22s ease,transform .35s ease}
+.menu-group.is-open .menu-children li{opacity:1;transform:translateY(0);transition:opacity .4s ease,transform .55s cubic-bezier(.22,1,.36,1);transition-delay:80ms}
+.menu-group.is-open .menu-children li:nth-child(2){transition-delay:150ms}
+.menu-group.is-open .menu-children li:nth-child(3){transition-delay:220ms}
+
+@media(max-width:640px){.menu-page{--menu-title-size:clamp(23px,5.7vw,34px);padding-top:calc(50svh - var(--menu-title-size) * 2.1 - 45px)}.menu-list{margin-top:0}}
+@media(prefers-reduced-motion:reduce){.menu-children,.menu-children li,.menu-group.is-open .menu-children li{transition:none}}
+
+.menu-page{position:relative;overflow:hidden;isolation:isolate}
+.menu-list{position:relative;z-index:1}
+.menu-foam{position:absolute;z-index:0;pointer-events:none;border:0;width:43vw;height:40vh;right:-9vw;top:31%;opacity:.7;mask-image:linear-gradient(to right,transparent,#000 22%);}
+@media(max-width:900px){.menu-foam{width:46vw;right:-19vw;opacity:.35}}
+@media(max-width:640px){.menu-foam{width:62vw;right:-36vw;top:22%;opacity:.2}}
+/* Render the desktop composition, then shrink it into a quiet edge detail. */
+.menu-foam{width:1150px;height:730px;transform:scale(.45);transform-origin:top right;top:27%;right:-100px}
+@media(max-width:900px){.menu-foam{width:1150px;right:-170px;transform:scale(.38)}}
+@media(max-width:640px){.menu-foam{width:1150px;right:-180px;transform:scale(.3)}}
+
+/* The project entry lives at the same bottom-center position on MENU only. */
+body .ui footer{visibility:hidden;opacity:0;pointer-events:none}
+body.menu-active .ui footer{visibility:visible;opacity:1;transform:none;pointer-events:auto}
+
+/* Branches grow with the existing hover accordion; no decorative icons. */
+.menu-children ul{position:relative;padding-left:48px}
+.menu-branch-lines{position:absolute;inset:0 auto 0 0;width:40px;height:100%;overflow:visible;pointer-events:none;fill:none;stroke:color-mix(in srgb,var(--color-text-muted) 48%,transparent);stroke-width:1;stroke-linecap:round}
+.menu-branch-lines path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .22s ease,stroke .18s ease}
+.menu-group.is-open .menu-branch-lines path{stroke-dashoffset:0;transition:stroke-dashoffset .58s cubic-bezier(.22,1,.36,1),stroke .18s ease;transition-delay:var(--branch-delay),0s}
+.menu-children li{position:relative;transform:translate(-12px,-5px)}
+.menu-group.is-open .menu-children li{transform:translate(0,0)}
+.menu-branch-lines path.is-highlighted{stroke:var(--color-text-primary)}
+@media(max-width:640px){.menu-children ul{padding-left:40px}}
+@media(prefers-reduced-motion:reduce){.menu-branch-lines path,.menu-group.is-open .menu-branch-lines path{transition:none}}
+
+/* All three headings share the same start time on each MENU entrance. */
+.menu-type-character{opacity:0}
+body.menu-active .menu-type-character{animation:menu-type-on 1ms linear both;animation-delay:calc(100ms + var(--menu-char-index)*70ms)}
+@keyframes menu-type-on{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.menu-type-character{opacity:1}body.menu-active .menu-type-character{animation:none}}

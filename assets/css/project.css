@@ -1,0 +1,530 @@
+/* New portfolio pages follow the shared full-page scroll-snap pattern. */
+.project-page{position:relative;z-index:2;min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;background:var(--page-bg);color:var(--color-text-primary);padding:125px 7% 70px;pointer-events:auto}
+.project-inner{max-width:960px;margin:auto}
+.project-page h1{font:400 clamp(21px,2.1vw,30px)/1.35 "Songti SC","Noto Serif CJK SC",serif;margin:0 0 16px}
+.project-page h2{font:400 clamp(13px,1.3vw,18px)/1.5 "Roboto","PingFang SC",sans-serif;margin:0 0 20px;color:var(--color-text-body)}
+.project-video{width:min(680px,100%);aspect-ratio:1128/553;position:relative;margin:0 auto 20px;background:#0d0e0e;overflow:hidden}
+.project-video-cover{position:absolute;inset:0;padding:0;width:100%;border:0;background:none;color:white}
+.project-video img{display:block;width:100%;height:100%;object-fit:cover}
+.project-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;border:1px solid #ffffffb0;border-radius:50%;display:grid;place-items:center;padding-left:3px;font-size:18px;background:#1118;backdrop-filter:blur(5px);transition:box-shadow .2s ease}
+.project-video-cover:hover .project-play{box-shadow:0 0 24px #ffffff55}
+.project-play-label{position:absolute;bottom:13px;right:17px;font:12px ui-monospace,monospace;text-shadow:0 1px 6px #000}
+.project-video iframe{border:0;width:100%;height:100%;position:absolute;inset:0}
+.project-description{font:400 13px/1.85 "Roboto","PingFang SC",sans-serif;color:var(--color-text-body)}
+.project-description p{margin:0 0 12px}.project-results strong{color:var(--color-text-primary);font-weight:500}
+.project-source{font:11px/1.5 ui-monospace,monospace;color:var(--color-text-muted);text-decoration:none}
+body.project-active .ui header{align-items:center}body.project-active .claire-mark{writing-mode:horizontal-tb}
+.menu-child{text-decoration:none}
+@media(min-width:1000px) and (max-height:800px){.project-page{padding-top:115px}.project-video{width:600px;margin-bottom:16px}.project-page h1{margin-bottom:12px}.project-page h2{margin-bottom:16px}.project-description{font-size:12px;line-height:1.75}}
+@media(max-width:900px){.project-page{padding-top:145px}body.project-active .claire-mark{font-size:22px;letter-spacing:.05em}}
+@media(max-width:640px){.project-page{padding-top:165px}.project-page h1{font-size:23px}.project-page h2{font-size:14px}.project-description{font-size:13px}body.project-active .claire-mark{font-size:20px}.project-video{margin-top:22px}body.project-active .ui header{align-items:flex-start;flex-wrap:wrap;gap:15px}}
+/* Desktop composition: large film on the left, editorial copy on the right. */
+@media(min-width:901px){
+ .project-page{padding:clamp(155px,23vh,225px) 5.5% 58px}
+ .project-inner{max-width:1600px;display:grid;grid-template-columns:minmax(0,3.65fr) minmax(210px,1fr);column-gap:3%;align-items:start}
+ .project-page h1{grid-column:1;margin:0 0 10px}
+ .project-page h2{grid-column:1;margin:0 0 18px}
+ .project-video{grid-column:1;grid-row:3;width:100%;margin:0;aspect-ratio:1128/553}
+ .project-description{grid-column:2;grid-row:3 / 5;align-self:end;font-size:clamp(13px,1.15vw,18px);line-height:1.55;padding-bottom:27px}
+ .project-description p{margin:0 0 23px}
+ .project-description p:last-child{margin-bottom:0}
+ .project-source{grid-column:1;grid-row:4;margin-top:9px;font-size:12px}
+}
+
+@media(min-width:901px){.project-results{font-size:clamp(10px,1vw,14px);line-height:1.65;transform:translateY(1.55em)}.results-line{display:block;white-space:nowrap}}
+/* Type-on heading and gently staggered, masked line entrances. */
+.type-character{opacity:0}
+.text-line-mask{display:block;overflow:hidden}
+.text-line-rise{display:block;opacity:0;transform:translateY(105%)}
+.text-entering .type-character{animation:project-type-on 1ms linear both;animation-delay:calc(120ms + var(--char-index) * 65ms)}
+.text-entering .text-line-rise{animation:project-line-up .65s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(180ms + var(--line-index) * 85ms)}
+.text-entered .type-character,.text-entered .text-line-rise{opacity:1;transform:none}
+@keyframes project-type-on{to{opacity:1}}
+@keyframes project-line-up{from{opacity:0;transform:translateY(105%)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.type-character,.text-line-rise{opacity:1;transform:none;animation:none!important}}
+
+/* THE ONE: editorial copy beside six uncropped presentation frames. */
+.the-one-page{padding:145px 5.5% 65px}
+.the-one-layout{max-width:1600px;margin:auto;display:grid;grid-template-columns:minmax(280px,1fr) minmax(0,1.85fr);gap:5%;align-items:center}
+.the-one-copy h1{font-size:clamp(21px,2.1vw,30px);margin:0 0 20px}
+.the-one-copy h2{margin:0 0 28px;line-height:1.7}
+.the-one-copy .project-description{padding:0;font-size:clamp(13px,1.1vw,17px);line-height:1.85}
+.the-one-copy .project-description p{margin:0 0 22px}
+.the-one-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:100%;max-width:calc((100svh - 242px) * 1.185);justify-self:end}
+.the-one-gallery img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain}
+@media(max-width:900px){.the-one-page{padding-top:145px}.the-one-layout{grid-template-columns:1fr;gap:30px}.the-one-gallery{max-width:none}.the-one-copy .project-description{font-size:14px}.the-one-copy h2{margin-bottom:20px}}
+@media(max-width:640px){.the-one-page{padding-top:165px}.the-one-gallery{gap:10px}.the-one-copy h1{font-size:23px}}
+
+.the-one-copy h1{text-wrap:balance}
+
+/* Khaby China: campaign poster, original QR and five portrait story frames. */
+.khaby-inner{max-width:1600px;margin:auto}
+.khaby-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:4%;align-items:center}
+.khaby-page h2{margin-bottom:25px}
+.khaby-poster{position:relative;margin:0}
+.khaby-poster>img{display:block;width:100%;height:auto}
+.khaby-qr{position:absolute;right:12px;bottom:12px;width:clamp(88px,8vw,126px);padding:6px;background:#fff;color:#111;text-align:center}
+.khaby-qr img{display:block;width:100%;height:auto}
+.khaby-qr span{display:block;font:10px/1.5 "PingFang SC",sans-serif;letter-spacing:.08em;margin-top:4px}
+.khaby-detail .project-description{padding:0;margin-bottom:26px;font-size:clamp(13px,1.1vw,17px);line-height:1.85}
+.khaby-frames{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;align-items:start}
+.khaby-frames img{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;transition:transform .3s ease}
+.khaby-frames img:hover{transform:translateY(-6px)}
+.khaby-page.text-entering .khaby-poster{animation:khaby-reveal .8s ease both}
+.khaby-page.text-entering .khaby-frames img{animation:khaby-reveal .7s ease both;animation-delay:calc(160ms + var(--frame-index) * 90ms)}
+@keyframes khaby-reveal{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}
+@media(max-width:900px){.khaby-layout{grid-template-columns:1fr;gap:24px}.khaby-detail .project-description{margin-bottom:22px}.khaby-frames{max-width:620px}.khaby-qr{width:100px}}
+@media(max-width:640px){.khaby-qr{right:8px;bottom:8px;width:80px;padding:5px}.khaby-qr span{font-size:9px;letter-spacing:0}.khaby-frames{gap:6px}}
+@media(prefers-reduced-motion:reduce){.khaby-page.text-entering .khaby-poster,.khaby-page.text-entering .khaby-frames img{animation:none}.khaby-frames img{transition:none}}
+
+/* The Swim Back: retain the complete 16:9 poster for the 21:9 film. */
+.swim-back-page .project-video{aspect-ratio:16/9}
+.swim-back-page .project-video img{object-fit:contain}
+.swim-back-page .project-description{line-height:1.8}
+.swim-back-page .swim-back-facts{font-size:.9em;line-height:1.85;color:var(--color-text-muted)}
+.swim-back-page .swim-back-award{font-size:.9em;color:var(--color-text-primary);padding-top:14px;border-top:1px solid color-mix(in srgb,var(--color-text-muted) 30%,transparent)}
+.swim-back-page.text-entering .project-video{animation:swim-back-reveal .9s ease both}
+@keyframes swim-back-reveal{from{opacity:0;translate:0 12px}to{opacity:1;translate:0 0}}
+@media(min-width:901px){.swim-back-page{padding-top:clamp(135px,18vh,185px)}.swim-back-page .project-inner{grid-template-columns:minmax(0,3.2fr) minmax(240px,1fr);column-gap:3.5%}.swim-back-page .project-description{align-self:center;padding:0;font-size:clamp(12px,1vw,16px)}.swim-back-page .project-description p{margin-bottom:19px}.swim-back-page .project-description p:last-child{margin-bottom:0}}
+@media(prefers-reduced-motion:reduce){.swim-back-page.text-entering .project-video{animation:none}}
+
+.swim-back-page{padding-bottom:100px}
+.swim-back-guide{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);text-transform:none;font-style:italic;cursor:default}
+
+/* Behind-the-scenes orbit and its separately addressable detail views. */
+.swim-back-guide{cursor:pointer}
+.bts-page{padding-top:clamp(145px,19vh,190px);padding-bottom:65px}
+.bts-inner{max-width:1500px;margin:auto}
+.bts-orbit{position:relative;height:clamp(360px,55vh,620px);margin-top:12px;isolation:isolate}
+.bts-orbit-ring{position:absolute;left:13%;right:13%;top:20%;bottom:20%;border:1px solid color-mix(in srgb,var(--color-text-muted) 28%,transparent);border-radius:50%;transform:rotate(-8deg);pointer-events:none}
+.bts-orbit-card{position:absolute;top:50%;left:50%;width:clamp(100px,12vw,180px);color:var(--color-text-primary);text-decoration:none;text-align:center;will-change:transform}
+.bts-orbit-card img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid #ffffff20;box-shadow:0 12px 35px #0003;transition:box-shadow .2s ease}
+.bts-orbit-card span{display:block;margin-top:12px;white-space:nowrap;font:400 clamp(12px,1.1vw,16px)/1.5 "PingFang SC",sans-serif}
+.bts-orbit-card:hover img,.bts-orbit-card:focus-visible img{box-shadow:0 0 25px #b8d8ff33}
+.bts-orbit-card:focus-visible{outline:1px solid currentColor;outline-offset:7px;border-radius:12px}
+.bts-help{text-align:center;color:var(--color-text-muted);font-size:12px;letter-spacing:.12em}
+.bts-detail[hidden]{display:none}
+.bts-detail{padding-top:145px}
+.bts-return{display:inline-block;color:var(--color-text-muted);font-size:13px;text-decoration:none;margin-bottom:25px}
+.bts-return:hover{color:var(--color-text-primary)}
+.bts-full-image{display:block;width:auto;max-width:100%;height:auto;max-height:none;margin:30px auto}
+.bts-return-bottom{display:block;width:fit-content;margin:30px auto 0}
+@media(max-width:640px){.bts-page,.bts-detail{padding-top:165px}.bts-orbit{height:440px}.bts-orbit-card{width:90px}.bts-orbit-card span{font-size:11px}.bts-orbit-ring{left:20%;right:20%;top:15%;bottom:15%}}
+
+/* Transparent star field fades fully into the shared page background at both edges. */
+.bts-page{isolation:isolate;overflow:hidden}
+.bts-page>.bts-inner{position:relative;z-index:1}
+.bts-glitter{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.75;mask-image:linear-gradient(to bottom,transparent 0%,#000 25%,#000 72%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 25%,#000 72%,transparent 100%)}
+.bts-orbit-card span{text-shadow:0 1px 8px var(--page-bg),0 0 12px var(--page-bg)}
+
+/* Paper instant-photo frames, with labels in the lower margin. */
+.bts-orbit-card{padding:9px 8px 7px;background:linear-gradient(115deg,#f1f0e7,#fffef7 48%,#e4e5dc);border:1px solid #dadbd1;border-radius:1px;box-shadow:3px 4px 0 #bfc3b74d,0 10px 25px #0005;box-sizing:border-box}
+.bts-orbit-card::before{content:"";position:absolute;width:32%;height:17px;left:34%;top:-9px;background:linear-gradient(110deg,#d3bc80bd,#e3cc92d6,#cbb47bbd);transform:rotate(-4deg);box-shadow:0 1px 2px #0002;pointer-events:none;clip-path:polygon(0 8%,97% 0,100% 90%,3% 100%)}
+.bts-orbit-card img{border-radius:0;border:0;box-shadow:none}
+.bts-orbit-card span{color:#343831;text-shadow:none;margin:8px -5px 0;min-height:21px;font-size:clamp(10px,.9vw,14px);line-height:1.6;letter-spacing:0}
+.bts-orbit-card:hover img,.bts-orbit-card:focus-visible img{box-shadow:none}
+.bts-orbit-card:hover,.bts-orbit-card:focus-visible{box-shadow:3px 4px 0 #bfc3b74d,0 0 25px #b8d8ff55}
+@media(max-width:640px){.bts-orbit-card{padding:6px 5px 5px}.bts-orbit-card span{font-size:10px;margin-top:6px;min-height:19px}.bts-orbit-card::before{height:13px;top:-7px}}
+
+.bts-page .bts-script-panel[hidden],.bts-page .bts-orbit[hidden],.bts-page .bts-help[hidden]{display:none}
+.bts-script-panel{min-height:clamp(400px,61vh,660px);padding-top:65px}
+.bts-script-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:7%;align-items:center;max-width:1150px;margin:0 auto 50px}
+.bts-script-copy{font:400 clamp(15px,1.3vw,20px)/2 "Roboto","PingFang SC",sans-serif;color:var(--color-text-body)}
+.bts-script-copy p{margin:0}
+.bts-script-layout>img{display:block;width:100%;height:auto;opacity:.9}
+.bts-script-panel>.bts-return{display:block;width:fit-content;margin:35px auto 0}
+.bts-script-heading-char{opacity:0;animation:project-type-on 1ms both;animation-delay:calc(var(--char-index)*32ms)}
+.bts-script-copy .text-line-rise{animation:project-line-up .65s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(130ms + var(--line-index)*100ms)}
+.bts-script-panel.is-revealing> .bts-script-layout>img{animation:swim-back-reveal .7s ease both}
+.bts-zoom-clone{position:fixed!important;z-index:1000!important;pointer-events:none!important;margin:0!important}
+@media(max-width:640px){.bts-script-panel{padding-top:30px}.bts-script-layout{grid-template-columns:1fr;gap:28px;margin-bottom:28px}.bts-script-layout>img{max-width:360px;margin:auto}.bts-script-copy{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.bts-script-heading-char{opacity:1;animation:none}.bts-script-copy .text-line-rise{opacity:1;transform:none;animation:none}.bts-script-panel.is-revealing> .bts-script-layout>img{animation:none}}
+
+.bts-help{margin-top:48px}
+
+.bts-wide-image{padding-top:40px}
+.bts-wide-image .bts-script-layout{max-width:1500px;grid-template-columns:minmax(0,2.8fr) minmax(0,1fr);gap:3%;align-items:end}
+.bts-wide-image .bts-script-layout>img{opacity:1;max-width:none;grid-column:1;grid-row:1}
+.bts-wide-image .bts-script-copy{grid-column:2;grid-row:1;align-self:end;font-size:clamp(12px,1vw,16px);line-height:1.8}
+@media(max-width:640px){.bts-wide-image .bts-script-layout{grid-template-columns:1fr;gap:25px}.bts-wide-image .bts-script-copy{font-size:14px;grid-column:1;grid-row:2}.bts-wide-image .bts-script-layout>img{width:100%;grid-column:1;grid-row:1}}
+
+.bts-orbit-card span{font-size:clamp(12px,1.05vw,16px);font-weight:600}
+@media(max-width:640px){.bts-orbit-card span{font-size:11px}}
+
+.bts-return,.bts-return-bottom,.bts-script-panel>.bts-return{display:flex;align-items:center;gap:9px;width:fit-content}
+.bts-return-mouse{display:block;flex-shrink:0;filter:drop-shadow(0 0 5px #d8e9ff30)}
+
+.bts-tone-panel{padding-top:28px}
+.bts-tone-panel .bts-script-layout{max-width:1300px;display:flex;flex-direction:column;gap:24px;margin-bottom:24px}
+.bts-tone-panel .bts-script-layout>img{display:none}
+.bts-tone-panel .bts-script-copy{order:2;width:100%;font-size:clamp(13px,1.05vw,16px);line-height:1.85}
+.bts-tone-gallery[hidden]{display:none}
+.bts-tone-gallery{display:flex;order:1;width:100%;gap:var(--gallery-gap,7px);height:300px}
+.bts-tone-gallery button{position:relative;display:block;flex:0 0 var(--strip,28px);min-width:0;padding:0;border:0;overflow:hidden;background:#111;border-radius:4px;cursor:pointer;transition:flex-basis .65s cubic-bezier(.22,1,.36,1)}
+.bts-tone-gallery button.is-active{flex-basis:var(--expanded,70%)}
+.bts-tone-gallery button img{position:absolute;top:0;left:50%;transform:translateX(-50%);display:block;width:var(--expanded);max-width:none;height:100%;object-fit:contain}
+.bts-tone-gallery button:focus-visible{outline:2px solid var(--color-text-primary);outline-offset:3px}
+.bts-tone-panel>.bts-return{margin-top:24px}
+@media(prefers-reduced-motion:reduce){.bts-tone-gallery button{transition:none}}
+
+/* Continuous sprocket borders sit outside the uncropped gallery image area. */
+.bts-tone-gallery{position:relative;background:#080808;margin-block:28px}
+.bts-tone-gallery::before,.bts-tone-gallery::after{content:"";position:absolute;left:0;right:0;height:28px;pointer-events:none;background-color:#080808;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='28' viewBox='0 0 38 28'%3E%3Crect x='11' y='7' width='16' height='14' rx='3' fill='%23e5e1d6'/%3E%3C/svg%3E");background-repeat:repeat-x;background-position:center}
+.bts-tone-gallery::before{bottom:100%}
+.bts-tone-gallery::after{top:100%}
+.bts-tone-gallery button{border-radius:0}
+
+.bts-tone-gallery{margin-block:11.2px}
+.bts-tone-gallery::before,.bts-tone-gallery::after{height:11.2px;background-size:15.2px 11.2px}
+
+.bts-tone-gallery::before,.bts-tone-gallery::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='76' height='28' viewBox='0 0 76 28'%3E%3Crect x='30' y='7' width='16' height='14' rx='3' fill='%237c7b75'/%3E%3C/svg%3E");background-size:30.4px 11.2px}
+
+.bts-sets-panel{padding-top:30px}
+.bts-sets-panel .bts-script-layout{display:flex;flex-direction:column;gap:30px;max-width:1200px;margin-bottom:30px}
+.bts-sets-panel .bts-script-layout>img{display:none}
+.bts-sets-panel .bts-script-copy{width:100%;font-size:clamp(13px,1.1vw,17px);line-height:1.85}
+.bts-sets-gallery[hidden]{display:none}
+.bts-sets-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;width:100%;align-items:start}
+.bts-set-crop{display:block;position:relative;overflow:hidden;width:100%;padding:0;border:0;background:#fff;border-radius:2px}
+button.bts-set-crop{cursor:zoom-in;transition:box-shadow .25s ease}
+button.bts-set-crop:hover,button.bts-set-crop:focus-visible{box-shadow:0 0 20px #c8dfff44;outline:1px solid #c8dfff}
+.bts-set-crop img{position:absolute;left:0;width:100%;max-width:none;object-fit:fill}
+.bts-image-dialog{border:1px solid #ffffff30;padding:45px 20px 20px;background:#181818;color:#eee;width:min(950px,94vw);max-width:94vw;max-height:90svh;overflow:auto}
+.bts-image-dialog::backdrop{background:#000c;backdrop-filter:blur(5px)}
+.bts-image-close{position:sticky;top:0;display:block;margin:-30px 0 15px auto;z-index:1;border:1px solid #ffffff40;border-radius:20px;padding:7px 14px;background:#222;color:#fff;cursor:pointer}
+@media(max-width:640px){.bts-sets-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.bts-image-dialog{padding:45px 8px 8px}}
+
+/* Depth rail; the front card keeps the previous grid's width and image ratio. */
+.bts-sets-gallery{display:block;position:relative;perspective:1100px;min-height:220px;touch-action:pan-y}
+.bts-sets-gallery>.bts-set-crop{position:absolute;left:50%;top:0;width:var(--card-width);transform:translateX(calc(-50% + var(--depth)*46px)) translateZ(calc(var(--depth)*-110px));transform-origin:center center;transition:transform .65s cubic-bezier(.22,1,.36,1),opacity .55s ease,box-shadow .25s ease;box-shadow:0 15px 40px #0005;user-select:none}
+.bts-depth-controls{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:22px;color:var(--color-text-muted);font:12px ui-monospace,monospace}
+.bts-depth-controls button{border:1px solid #ffffff30;border-radius:50%;width:36px;height:36px;background:var(--page-bg);color:var(--color-text-primary);font-size:24px;cursor:pointer}
+.bts-depth-controls button:hover{border-color:var(--color-text-primary)}
+@media(max-width:640px){.bts-sets-gallery>.bts-set-crop{transform:translateX(calc(-50% + var(--depth)*26px)) translateZ(calc(var(--depth)*-110px))}}
+@media(prefers-reduced-motion:reduce){.bts-sets-gallery>.bts-set-crop{transition:none}}
+
+.bts-sets-gallery>.bts-set-crop{top:calc(50% - 32.5px);translate:0 -50%}
+
+@media(min-width:641px){
+ .bts-sets-panel .bts-script-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);gap:6%;align-items:center}
+ .bts-sets-panel .bts-script-copy{grid-column:1;grid-row:1;font-size:clamp(13px,1.1vw,17px);line-height:1.95}
+ .bts-sets-panel .bts-sets-gallery{grid-column:2;grid-row:1;min-width:0}
+}
+
+/* Each desktop detail reserves one viewport for header, content and return link. */
+@media(min-width:641px){
+ .bts-page.bts-detail-active{height:100svh;min-height:100svh;box-sizing:border-box;padding:clamp(105px,15vh,145px) 5.5% 40px}
+ .bts-detail-active>.bts-inner{height:100%;display:flex;flex-direction:column}
+ .bts-detail-active h1,.bts-detail-active h2{flex-shrink:0}
+ .bts-detail-active h1{margin-bottom:10px}
+ .bts-detail-active h2{margin-bottom:0}
+ .bts-detail-active .bts-script-panel{display:flex;flex-direction:column;flex:1;min-height:0;padding-top:24px}
+ .bts-detail-active .bts-script-layout{flex:1;min-height:0;width:100%;margin:0 auto;gap:4%}
+ .bts-detail-active .bts-script-panel>.bts-return{flex:none;margin:16px auto 0;min-height:26px}
+ .bts-detail-active .bts-script-copy{line-height:1.75}
+ .bts-detail-active .bts-script-layout>img{max-height:100%;min-height:0;object-fit:contain}
+ .bts-detail-active .bts-wide-image .bts-script-layout{align-items:end}
+ .bts-detail-active .bts-wide-image .bts-script-layout>img{object-position:left bottom;height:100%}
+ .bts-detail-active .bts-tone-panel .bts-script-layout{gap:18px;justify-content:center}
+ .bts-detail-active .bts-tone-panel .bts-script-copy{flex:none;font-size:clamp(12px,1.05vw,16px)}
+ .bts-detail-active .bts-tone-gallery{flex:none}
+ .bts-detail-active .bts-sets-gallery{min-height:0}
+}
+@media(min-width:641px) and (max-height:700px){
+ .bts-detail-active .bts-script-panel{padding-top:16px}
+ .bts-detail-active .bts-script-copy{font-size:13px;line-height:1.65}
+ .bts-detail-active .bts-wide-image .bts-script-copy{font-size:12px}
+}
+/* Keep the orbit guide within the same one-screen frame as its detail views. */
+@media(min-width:641px){
+ .bts-page:not(.bts-detail-active){height:100svh;min-height:100svh;box-sizing:border-box;padding:clamp(105px,15vh,145px) 5.5% 40px}
+ .bts-page:not(.bts-detail-active)>.bts-inner{height:100%;display:flex;flex-direction:column}
+ .bts-page:not(.bts-detail-active) h1,.bts-page:not(.bts-detail-active) h2{flex-shrink:0}
+ .bts-page:not(.bts-detail-active) h1{margin-bottom:10px}
+ .bts-page:not(.bts-detail-active) h2{margin-bottom:0}
+ .bts-page:not(.bts-detail-active) .bts-orbit{flex:1;min-height:0;height:auto;margin-top:18px}
+ .bts-page:not(.bts-detail-active) .bts-help{flex:none;margin:24px 0 0;line-height:20px}
+ .bts-page:not(.bts-detail-active) .bts-orbit-card{width:min(clamp(100px,12vw,180px),19svh)}
+}
+/* Keep the film poster, synopsis and onward guide inside a desktop viewport. */
+@media(min-width:641px){
+ .swim-back-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:clamp(105px,15vh,145px) 5.5% 84px}
+ .swim-back-page .project-inner{height:100%;display:grid;grid-template-columns:minmax(0,2.8fr) minmax(210px,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;column-gap:3.5%;align-items:start}
+ .swim-back-page h1{grid-column:1 / -1;margin:0 0 10px}
+ .swim-back-page h2{grid-column:1 / -1;margin:0 0 18px}
+ .swim-back-page .project-video{grid-column:1;grid-row:3;width:min(100%,calc((100svh - 280px)*16/9));aspect-ratio:16/9;margin:0;align-self:center;justify-self:center}
+ .swim-back-page .project-description{grid-column:2;grid-row:3 / 5;align-self:center;padding:0;font-size:clamp(12px,1vw,16px);line-height:1.7}
+ .swim-back-page .project-description p{margin:0 0 14px}
+ .swim-back-page .project-description p:last-child{margin-bottom:0}
+ .swim-back-page .swim-back-facts{line-height:1.7}
+ .swim-back-page .swim-back-award{padding-top:10px}
+ .swim-back-page .project-source{grid-column:1;grid-row:4;margin-top:8px;font-size:11px}
+ .swim-back-page .swim-back-guide{bottom:18px}
+}
+@media(min-width:641px) and (max-height:650px){
+ .swim-back-page .project-description{font-size:11px;line-height:1.55}
+ .swim-back-page .project-description p{margin-bottom:9px}
+ .swim-back-page .swim-back-facts{line-height:1.55}
+}
+
+/* Production workflow: three complete diagrams, in supplied order. */
+.production-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:clamp(105px,15vh,145px) 5.5% 48px}
+.production-inner{max-width:1500px;height:100%;margin:auto;display:flex;flex-direction:column}
+.production-page h1{flex:none;margin:0 0 24px}
+.production-page .project-description{flex:none;align-self:auto;padding:0;font-size:clamp(13px,1.12vw,18px);line-height:1.8;margin-bottom:26px}
+.production-page .project-description p{margin:0}
+.production-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;flex:1;min-height:0}
+.production-image{display:block;width:100%;height:100%;min-height:0;overflow:hidden;border:0;padding:0;background:#fff;cursor:zoom-in;transition:box-shadow .2s ease}
+.production-image img{display:block;width:100%;height:100%;object-fit:contain}
+.production-image:hover,.production-image:focus-visible{box-shadow:0 0 20px #bfdfff40;outline:1px solid #bfdfff}
+.production-hint{flex:none;text-align:right;font-size:12px;color:var(--color-text-muted);margin:12px 0 0}
+.production-dialog{width:min(1200px,94vw);max-width:94vw;max-height:90svh;box-sizing:border-box;border:1px solid #ffffff30;padding:16px;background:#181818;color:#fff;overflow:auto}
+.production-dialog::backdrop{background:#000d;backdrop-filter:blur(5px)}
+.production-dialog-tools{position:sticky;top:0;display:flex;justify-content:flex-end;gap:8px;z-index:1;margin-bottom:12px}
+.production-dialog-tools button{border:1px solid #ffffff50;border-radius:18px;padding:7px 14px;background:#222;color:#fff;cursor:pointer}
+.production-dialog img{display:block;width:100%;height:auto;max-width:none;background:#fff}
+.production-dialog.is-original img{width:auto}
+@media(max-width:640px){.production-page{padding:150px 6% 40px}.production-gallery{gap:9px}.production-page h1{font-size:22px;margin-bottom:16px}.production-page .project-description{font-size:13px;line-height:1.7;margin-bottom:20px}}
+@media(max-height:650px) and (min-width:641px){.production-page h1{margin-bottom:14px}.production-page .project-description{font-size:13px;line-height:1.65;margin-bottom:16px}}
+/* Equal image height without adding white letterboxing to the source images. */
+.production-gallery{display:flex;align-items:center;justify-content:space-between;gap:22px}
+.production-image{flex:none;width:auto;height:var(--production-image-height,100%);background:none;overflow:visible;aspect-ratio:var(--image-ratio)}
+.production-image img{width:100%;height:100%;object-fit:contain}
+@media(max-width:640px){.production-gallery{gap:9px}}
+
+/* Scheduling charts remain static, with their original aspect ratios. */
+.schedule-page .production-image{transition:none}
+.schedule-page .production-image:hover{box-shadow:none;outline:none}
+
+/* Schedule reference: large internal plan left, two timelines stacked right. */
+.schedule-page .production-gallery{display:grid;grid-template-columns:var(--schedule-left-width,56%) var(--schedule-right-width,40%);grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:18px 28px;align-content:start;align-items:start;justify-content:center}
+.schedule-page .production-image{width:100%;height:auto;aspect-ratio:auto;min-height:0}
+.schedule-page .production-image:nth-child(3){grid-column:1;grid-row:1 / 3}
+.schedule-page .production-image:nth-child(1){grid-column:2;grid-row:1}
+.schedule-page .production-image:nth-child(2){grid-column:2;grid-row:2}
+.schedule-page .production-image img{width:100%;height:auto}
+.schedule-page .project-description{margin-bottom:20px}
+@media(max-width:640px){.schedule-page .production-gallery{gap:12px}}
+
+/* Client proposals: tilted image grid behind a centered editorial statement. */
+.project-page.client-page{height:100svh;min-height:100svh;box-sizing:border-box;overflow:hidden;isolation:isolate;padding:120px 8% 70px;display:grid;place-items:center;background:#252525;color:#f3f0e9}
+.client-grid-background{position:absolute;inset:0;z-index:-3;overflow:hidden;pointer-events:none}
+.client-grid{position:absolute;left:50%;top:50%;width:max(115vw,1100px);transform:translate(-50%,-50%) rotate(-12deg);display:grid;gap:18px;filter:grayscale(.85) saturate(.35)}
+.client-grid-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;transform:translateX(var(--row-shift,0px));will-change:transform}
+.client-grid-row img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px}
+.client-grid-shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,#222b,#35353599 30%,#3339 70%,#222c)}
+.client-grid-shade:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,#242424bd 0%,#29292985 38%,transparent 76%)}
+.client-copy{width:min(850px,100%);text-align:center;text-shadow:0 2px 18px #0009}
+.client-page h1{font-size:clamp(27px,3vw,44px);line-height:1.4;margin:0 0 30px}
+.client-page .project-description{font-size:clamp(15px,1.45vw,21px);line-height:2.05;color:#f0eee9;padding:0;margin:0;font-weight:400}
+.client-page .project-description p{margin:0}
+@media(max-width:640px){.project-page.client-page{padding:155px 8% 60px}.client-page h1{font-size:25px;margin-bottom:22px}.client-page .project-description{font-size:14px;line-height:1.95}.client-grid{width:1050px}}
+@media(prefers-reduced-motion:reduce){.client-grid-row{will-change:auto}}
+
+/* AIEDA: brand introduction and debut music video. */
+.project-page.aieda-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:125px 5.5% 65px;display:flex;align-items:center}
+.aieda-layout{width:100%;max-width:1600px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.85fr);gap:5%;align-items:center}
+.aieda-copy h1{font-size:clamp(23px,2.3vw,34px);line-height:1.5;margin:0 0 28px;text-wrap:balance}
+.aieda-copy .project-description{padding:0;font-size:clamp(13px,1.13vw,17px);line-height:1.95}
+.aieda-copy .project-description p{margin:0}
+.aieda-feature{margin:0;width:100%;max-width:calc((100svh - 275px)*16/9);justify-self:end}
+.aieda-feature .project-video{width:100%;aspect-ratio:16/9;margin:0}
+.aieda-feature figcaption{margin-top:20px;border-top:1px solid #80808040;padding-top:17px}
+.aieda-feature h2{font-size:clamp(14px,1.2vw,18px);margin:0 0 8px;line-height:1.5;color:var(--color-text-primary)}
+.aieda-feature figcaption p{font:400 clamp(11px,1vw,14px)/1.8 "PingFang SC",sans-serif;color:var(--color-text-body);margin:0 0 8px}
+.aieda-feature .project-source{display:inline-block;margin:0;font-size:11px}
+@media(max-width:900px){.project-page.aieda-page{padding:130px 7% 45px}.aieda-layout{grid-template-columns:1fr;gap:24px}.aieda-copy h1{margin-bottom:14px;font-size:25px}.aieda-copy .project-description{font-size:13px;line-height:1.8}.aieda-feature{max-width:min(100%,calc((100svh - 420px)*16/9));justify-self:center}.aieda-feature figcaption{margin-top:12px;padding-top:10px}}
+@media(max-width:640px){.project-page.aieda-page{padding:145px 7% 30px}.aieda-layout{gap:18px}.aieda-copy h1{font-size:22px;margin-bottom:12px}.aieda-copy .project-description{font-size:12px;line-height:1.75}.aieda-feature{max-width:100%}.aieda-feature h2{font-size:13px}.aieda-feature figcaption p{font-size:11px}}
+
+@media(min-width:901px){.aieda-feature figcaption{text-align:right}}
+
+@media(min-width:901px){.aieda-copy{align-self:start}}
+
+/* Digital artists: two collaborations in one screen. */
+.project-page.digital-projects-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:125px 5.5% 65px;display:flex;align-items:center}
+.digital-projects-inner{width:100%;max-width:1600px;margin:auto}
+.digital-projects-page h1{margin:0 0 32px;font-size:clamp(23px,2.3vw,34px)}
+.digital-projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4%}
+.digital-project-card{margin:0;min-width:0}
+.digital-project-card .project-video{width:100%;aspect-ratio:16/9;margin:0;max-height:calc(100svh - 335px)}
+.digital-project-card figcaption{margin-top:18px;padding-top:16px;border-top:1px solid #80808040;text-align:right}
+.digital-project-card h2{font-size:clamp(13px,1.3vw,19px);line-height:1.55;margin:0 0 9px;color:var(--color-text-primary)}
+.digital-project-card figcaption p{font:400 clamp(11px,1vw,15px)/1.8 "PingFang SC",sans-serif;margin:0 0 10px;color:var(--color-text-body)}
+.digital-project-card .project-source{margin:0;display:inline-block;font-size:11px}
+@media(max-width:640px){.project-page.digital-projects-page{padding:140px 7% 30px}.digital-projects-page h1{font-size:22px;margin-bottom:18px}.digital-projects-grid{grid-template-columns:1fr;gap:18px}.digital-project-card .project-video{max-height:none;width:min(100%,calc((100svh - 380px)*8/9));margin:auto}.digital-project-card figcaption{margin-top:8px;padding-top:8px;text-align:center}.digital-project-card h2{font-size:12px;margin-bottom:3px}.digital-project-card figcaption p{font-size:10px;margin-bottom:3px}.digital-project-card .project-source{font-size:10px}}
+
+.digital-project-card figcaption{text-align:left}
+.lol-play-label{z-index:2;pointer-events:none}
+
+/* CG + AI product assets. */
+.project-page.ai-integration-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:120px 5.5% 55px;display:flex;align-items:center}
+.ai-integration-inner{width:100%;max-width:1600px;margin:auto}
+.ai-integration-page h1{font-size:clamp(23px,2.3vw,34px);margin:0 0 15px}
+.ai-integration-page h2{font-size:clamp(13px,1.3vw,19px);margin:0 0 28px;line-height:1.7}
+.ai-integration-page h2 strong{font-weight:600}
+.ai-integration-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:5%;align-items:start}
+.ai-integration-layout .project-description{grid-column:auto;grid-row:auto;align-self:start;padding:0;font-size:clamp(13px,1.1vw,17px);line-height:1.95}
+.ai-integration-layout .project-description p{margin:0}.ai-integration-layout strong{font-weight:600;color:var(--color-text-primary)}
+.audi-gallery{margin:0;width:100%;max-width:calc((100svh - 300px)*1.45);justify-self:end}
+.audi-main,.audi-thumb{display:block;border:0;padding:0;background:#f1efef;cursor:pointer;overflow:hidden;width:100%}
+.audi-main{aspect-ratio:16/9}.audi-main img{width:100%;height:100%;object-fit:cover;display:block}
+.audi-thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:10px}
+.audi-thumb{aspect-ratio:4/3}.audi-thumb img{width:100%;height:100%;object-fit:contain;display:block;transition:filter .2s}.audi-thumb:hover img{filter:brightness(.85)}
+.audi-gallery figcaption{font:12px/1.7 "PingFang SC",sans-serif;color:var(--color-text-body);margin-top:12px;text-align:right}
+.audi-lightbox{border:0;padding:0;background:transparent;max-width:94vw;max-height:94svh;overflow:visible}.audi-lightbox::backdrop{background:#000d}.audi-lightbox img{display:block;max-width:90vw;max-height:88svh;object-fit:contain}.audi-lightbox button{position:absolute;right:0;top:0;background:#111b;border:0;color:white;font-size:28px;cursor:pointer;width:40px;height:40px}
+@media(max-width:900px){.project-page.ai-integration-page{padding:120px 6% 40px}.ai-integration-page h2{margin-bottom:18px}.ai-integration-layout{grid-template-columns:1fr;gap:20px}.ai-integration-layout .project-description{font-size:12px;line-height:1.8}.audi-gallery{max-width:min(100%,calc((100svh - 410px)*1.4));justify-self:center}.audi-gallery figcaption{margin-top:7px}.audi-thumbs{gap:6px;margin-top:6px}}
+@media(max-width:640px){.project-page.ai-integration-page{padding:135px 7% 25px}.ai-integration-page h1{font-size:22px;margin-bottom:10px}.ai-integration-page h2{font-size:12px;margin-bottom:12px}.ai-integration-layout{gap:14px}.ai-integration-layout .project-description{font-size:11px;line-height:1.7}.audi-gallery{max-width:min(100%,calc((100svh - 460px)*1.4))}}
+
+.audi-lightbox,.audi-lightbox button{pointer-events:auto}.audi-lightbox button{z-index:2}
+
+/* Reserve the fixed footer area in the wide asset layout. */
+@media(min-width:901px){
+ .project-page.ai-integration-page{padding-top:110px;padding-bottom:95px}
+ .ai-integration-page h2{margin-bottom:20px}
+ .ai-integration-page .audi-gallery{max-width:min(100%,calc((100svh - 345px)*1.3))}
+ .ai-integration-page .audi-gallery figcaption{margin-top:10px;text-align:right;line-height:1.7}
+}
+
+.ai-integration-copy{min-width:0}
+.ai-integration-copy .gillette-video{width:min(100%,calc((100svh - 490px)*1.78));aspect-ratio:1168/656;margin:18px 0 0}
+@media(min-width:901px){.ai-integration-layout{grid-template-columns:minmax(0,1.2fr) minmax(0,1.3fr)}.ai-integration-copy .project-description{font-size:clamp(12px,1vw,16px);line-height:1.8}}
+@media(max-width:900px){.ai-integration-copy{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px;align-items:start}.ai-integration-copy .gillette-video{width:100%;margin:0}.ai-integration-page .audi-gallery{max-width:min(100%,calc((100svh - 460px)*1.3))}}
+@media(max-width:640px){.ai-integration-copy{grid-template-columns:1fr;gap:12px}.ai-integration-copy .gillette-video{width:min(100%,200px);margin:0 auto}.ai-integration-page .audi-gallery{max-width:min(100%,calc((100svh - 580px)*1.3))}}
+
+@media(min-width:641px) and (max-width:900px){.ai-integration-copy{display:block}.ai-integration-copy .gillette-video{width:min(240px,100%);margin:12px 0 0}.ai-integration-page .audi-gallery{max-width:min(100%,calc((100svh - 530px)*1.3))}}
+
+@media(min-width:641px) and (max-width:900px){
+.ai-integration-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.ai-integration-copy{display:contents}
+.ai-integration-copy .project-description{grid-column:1 / -1;grid-row:1}
+.ai-integration-copy .gillette-video{grid-column:1;grid-row:2;width:100%;margin:0}
+.ai-integration-page .audi-gallery{grid-column:2;grid-row:2;max-width:100%}
+}
+
+/* Paired video accordion: each expanded panel contains both workflow stages. */
+.project-page.workflow-comparison-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:115px 5.5% 85px;display:flex;align-items:center}
+.workflow-comparison-inner{width:100%;max-width:1600px;margin:auto;min-width:0}
+.workflow-comparison-page h1{font-size:clamp(23px,2.3vw,34px);margin:0 0 14px}
+.workflow-comparison-page h2{font-size:clamp(13px,1.3vw,19px);margin:0 0 24px;line-height:1.6}
+.workflow-intro{font:400 clamp(12px,1.15vw,17px)/1.7 "PingFang SC",sans-serif;color:var(--color-text-body);margin:0 0 18px}
+.workflow-accordion{display:flex;gap:10px;height:clamp(180px,36svh,400px);max-height:calc(100svh - 360px)}
+.workflow-panel{position:relative;flex:.65;min-width:0;overflow:hidden;background:#242424;border:1px solid #ffffff20;border-radius:5px;transition:flex .65s cubic-bezier(.22,1,.36,1)}
+.workflow-panel.is-active{flex:12}
+.workflow-tab{position:absolute;inset:0;z-index:2;border:0;background:transparent;color:#f1eee8;cursor:pointer;text-align:left;padding:12px;font:14px ui-monospace,monospace}
+.workflow-tab span{position:absolute;top:12px;left:12px;text-shadow:0 1px 5px #000}
+.workflow-panel.is-active .workflow-tab{height:36px;bottom:auto}
+.workflow-pair{height:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:36px 12px 12px;box-sizing:border-box;opacity:.3;transition:opacity .4s}
+.workflow-panel.is-active .workflow-pair{opacity:1}
+.workflow-pair figure{margin:0;display:flex;flex-direction:column;min-width:0;min-height:0}
+.workflow-pair video{display:block;width:100%;height:calc(100% - 25px);min-height:0;object-fit:contain;background:#0b0b0b}
+.workflow-pair figcaption{font:11px/25px "PingFang SC",sans-serif;color:#d0ceca;white-space:nowrap;text-align:center}
+.workflow-panel:not(.is-active) .workflow-pair{width:550px;transform:translateX(-220px);pointer-events:none}
+.workflow-controls{display:flex;align-items:center;gap:18px;margin-top:16px;font:11px/1.7 "PingFang SC",sans-serif;color:var(--color-text-muted)}
+.workflow-controls span{margin-right:auto}.workflow-controls button{background:none;border:0;border-bottom:1px solid #8886;color:var(--color-text-body);padding:3px 0;cursor:pointer;font:inherit}
+@media(max-width:640px){.project-page.workflow-comparison-page{padding:140px 5% 60px}.workflow-comparison-page h1{font-size:22px}.workflow-comparison-page h2{font-size:12px;margin-bottom:18px}.workflow-intro{font-size:11px}.workflow-accordion{gap:4px;height:230px}.workflow-panel.is-active{flex:20}.workflow-panel{flex:.5}.workflow-tab{padding:3px;font-size:10px}.workflow-tab span{left:3px}.workflow-pair{padding:30px 5px 5px;gap:4px}.workflow-controls{gap:12px;font-size:10px}}
+@media(prefers-reduced-motion:reduce){.workflow-panel,.workflow-pair{transition:none}}
+
+.workflow-accordion{height:min(48svh,520px);max-height:calc(100svh - 340px)}
+
+/* Remove numbered headers while retaining keyboard and click activation. */
+.workflow-pair{padding-top:12px}
+.workflow-panel.is-active .workflow-tab{height:100%;bottom:0}
+@media(max-width:640px){.workflow-pair{padding-top:5px}}
+
+.project-page.hybrid-cases-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:115px 5.5% 85px;display:flex;align-items:center}
+.hybrid-cases-inner{width:100%;max-width:1600px;margin:auto}
+.hybrid-cases-page h1{font-size:clamp(23px,2.3vw,34px);margin:0 0 14px}
+.hybrid-cases-page .hybrid-context{font-size:clamp(13px,1.3vw,19px);line-height:1.6;margin:0 0 26px}
+.hybrid-cases-page .hybrid-cases-label{font-size:clamp(15px,1.4vw,21px);margin:0 0 20px;color:var(--color-text-primary)}
+.hybrid-cases-page .project-video{max-height:calc(100svh - 390px)}
+.hybrid-cases-page .project-video img{object-fit:contain}
+.hybrid-cases-page .digital-project-card figcaption{margin-top:15px;padding-top:14px}
+.hybrid-cases-page .digital-project-card h2{font-size:clamp(13px,1.2vw,18px);margin:0 0 10px}
+@media(max-width:640px){.project-page.hybrid-cases-page{padding:140px 6% 50px}.hybrid-cases-page h1{font-size:22px}.hybrid-cases-page .hybrid-context{font-size:11px;margin-bottom:14px}.hybrid-cases-page .hybrid-cases-label{font-size:14px;margin-bottom:12px}.hybrid-cases-page .digital-projects-grid{gap:14px}.hybrid-cases-page .project-video{width:min(100%,calc((100svh - 430px)*.8));max-height:none}.hybrid-cases-page .digital-project-card figcaption{margin-top:6px;padding-top:6px}.hybrid-cases-page .digital-project-card h2{font-size:12px;margin-bottom:4px}}
+.project-page.live-ai-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:115px 5.5% 80px;display:flex;align-items:center}
+.live-ai-inner{width:100%;max-width:1600px;margin:auto}
+.live-ai-page h1{font-size:clamp(23px,2.3vw,34px);margin:0 0 13px}
+.live-ai-page .live-ai-subtitle{font-size:clamp(15px,1.4vw,21px);margin:0 0 22px}
+.live-ai-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:4%;align-items:start}
+.live-ai-layout .project-description{grid-column:auto;grid-row:auto;align-self:start;padding:0;font-size:clamp(12px,1.05vw,16px);line-height:1.9}
+.live-ai-layout .project-description p{margin:0}.live-ai-layout strong{font-weight:600;color:var(--color-text-primary)}
+.live-ai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px;width:100%;max-width:calc((100svh - 340px)*1.65);justify-self:end}
+.live-ai-card{margin:0;min-width:0}.live-ai-card .project-video{width:100%;aspect-ratio:16/9;margin:0}.live-ai-card .project-video img{object-fit:contain}.live-ai-card video{width:100%;height:100%;object-fit:contain;display:block}
+.live-ai-card figcaption{margin-top:9px}.live-ai-card h2{font:400 clamp(11px,1vw,14px)/1.65 "PingFang SC",sans-serif;color:var(--color-text-body);margin:0}.live-ai-card .project-play{width:40px;height:40px;font-size:14px}.live-ai-card .project-play-label{font-size:10px;right:10px;bottom:9px}
+@media(max-width:900px){.live-ai-layout{grid-template-columns:1fr;gap:18px}.live-ai-layout .project-description{font-size:11px;line-height:1.75}.live-ai-grid{max-width:min(100%,calc((100svh - 420px)*1.5));justify-self:center;gap:12px}.live-ai-page .live-ai-subtitle{margin-bottom:14px}.live-ai-card h2{font-size:10px}.live-ai-card figcaption{margin-top:6px}}
+@media(max-width:640px){.project-page.live-ai-page{padding:140px 6% 45px}.live-ai-page h1{font-size:22px}.live-ai-layout .project-description{font-size:10px;line-height:1.65}.live-ai-grid{max-width:min(100%,calc((100svh - 480px)*1.5))}.live-ai-card h2{font-size:9px}.live-ai-card .project-play{width:30px;height:30px;font-size:11px}.live-ai-card .project-play-label{font-size:8px}}
+
+#live-ai-video-1 video{object-fit:cover;object-position:center center}
+.project-page.festival-page{height:100svh;min-height:100svh;padding:115px 5.5% 75px;box-sizing:border-box;overflow:hidden}
+.festival-inner{max-width:1600px;height:100%;margin:auto;display:flex;flex-direction:column}.festival-page h1{font-size:clamp(25px,2.5vw,36px);margin:0 0 22px;flex:none}
+.festival-stage{position:relative;flex:1;min-height:0}.festival-introduction{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity .6s,transform .8s cubic-bezier(.22,1,.36,1)}
+.festival-introduction .project-description{padding:0;align-self:auto;max-width:900px;font-size:clamp(15px,1.6vw,22px);line-height:2;text-align:left}.festival-introduction p{margin:0}.festival-enter{margin-top:35px;background:none;border:0;color:var(--color-text-muted);font:12px/1.6 "PingFang SC",sans-serif;cursor:pointer}
+.festival-gallery{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;transform:translateY(100%);transition:opacity .65s,transform .9s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.festival-page.gallery-open .festival-introduction{opacity:0;transform:translateY(-70px);pointer-events:none}.festival-page.gallery-open .festival-gallery{opacity:1;transform:none;pointer-events:auto}
+.festival-carousel{position:relative;flex:1;min-height:100px;overflow:hidden;touch-action:pan-y;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.festival-track{position:relative;width:100%;height:100%;perspective:1000px}.festival-card{position:absolute;left:50%;top:0;height:100%;width:64%;padding:0;border:0;background:transparent;cursor:pointer;transition:transform .8s cubic-bezier(.22,1,.36,1),opacity .65s,filter .65s;overflow:hidden;border-radius:6px}.festival-card img{width:100%;height:100%;object-fit:contain;display:block}.festival-card:not(.is-current){filter:blur(1px);opacity:.5}.festival-card.is-current{z-index:2;filter:none;opacity:1}
+.festival-toolbar{display:flex;align-items:center;justify-content:space-between;flex:none;margin:12px 0 10px;color:var(--color-text-muted);font:11px/1.5 ui-monospace,monospace}.festival-toolbar>div{display:flex;align-items:center;gap:15px}.festival-toolbar button{border:0;background:none;color:var(--color-text-body);font:inherit;padding:5px;cursor:pointer}.festival-prev,.festival-next{font-size:18px!important}
+.festival-caption{flex:none;height:145px;max-width:1000px;margin:0 auto;width:100%;font:13px/1.85 "PingFang SC",sans-serif;color:var(--color-text-body)}.festival-caption p{margin:0}.festival-caption-copy.is-typing:after{content:'▍';animation:festival-cursor .7s steps(1) infinite}.festival-stats{margin-top:8px!important;font-size:12px;line-height:1.7}.festival-stats strong{color:var(--color-text-primary);font-weight:600}@keyframes festival-cursor{50%{opacity:0}}
+@media(max-width:900px){.festival-caption{font-size:12px;height:165px}.festival-stats{font-size:11px}.festival-card{width:78%}}
+@media(max-width:640px){.project-page.festival-page{padding:145px 6% 45px}.festival-page h1{font-size:24px;margin-bottom:15px}.festival-introduction .project-description{font-size:13px;line-height:1.9}.festival-caption{font-size:11px;height:190px}.festival-stats{font-size:10px}.festival-toolbar>div{gap:8px}.festival-toolbar{font-size:10px}.festival-card{width:90%}}
+@media(prefers-reduced-motion:reduce){.festival-introduction,.festival-gallery,.festival-card{transition:none}.festival-caption-copy.is-typing:after{animation:none}}
+
+.festival-stats.is-typing span{animation:festival-stat-type 1ms both;animation-delay:var(--type-delay)}@keyframes festival-stat-type{from{opacity:0}to{opacity:1}}
+/* Lower the gallery and its caption together, retaining footer clearance. */
+.festival-gallery{top:65px;bottom:-25px}
+@media(max-width:640px){.festival-gallery{top:35px;bottom:-10px}}
+.project-page.aica-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:115px 5.5% 75px;display:flex;align-items:center}
+.aica-inner{width:100%;max-width:1600px;margin:auto}.aica-page h1{font-size:clamp(25px,2.5vw,36px);margin:0 0 22px}
+.aica-page .project-description{padding:0;font-size:clamp(12px,1.15vw,17px);line-height:1.9;max-width:1400px;margin:0 0 25px}.aica-page .project-description p{margin:0}
+.aica-gallery{display:grid;grid-template-columns:3.25fr 1fr 1fr 1fr;gap:14px;height:clamp(180px,calc(100svh - 385px),430px);align-items:center}
+.aica-image{padding:0;border:0;background:none;width:100%;height:100%;min-width:0;min-height:0;cursor:zoom-in}.aica-image img{display:block;width:100%;height:100%;object-fit:contain;transition:filter .25s}.aica-image:hover img{filter:brightness(1.12)}
+.aica-hint{text-align:right;font:11px/1.5 "PingFang SC",sans-serif;color:var(--color-text-muted);margin:12px 0 0}
+.aica-lightbox{padding:40px 0 0;border:0;max-width:92vw;width:fit-content;max-height:90svh;background:#171717;overflow:auto;pointer-events:auto}.aica-lightbox::backdrop{background:#000d}.aica-lightbox img{display:block;max-width:85vw;width:auto;height:auto;margin:auto}.aica-lightbox button{position:sticky;top:0;float:right;margin-top:-36px;z-index:2;padding:7px 12px;background:#222;color:white;border:0;cursor:pointer;pointer-events:auto}
+@media(max-width:900px){.aica-page h1{font-size:25px;margin-bottom:18px}.aica-page .project-description{font-size:12px;line-height:1.8;margin-bottom:18px}.aica-gallery{grid-template-columns:2.6fr 1fr 1fr 1fr;gap:10px;height:calc(100svh - 390px)}}
+@media(max-width:640px){.project-page.aica-page{padding:140px 6% 50px}.aica-page h1{font-size:22px}.aica-page .project-description{font-size:11px}.aica-gallery{height:calc(100svh - 400px);grid-template-columns:repeat(3,1fr);grid-template-rows:1.4fr 1fr;gap:8px}.aica-image-1{grid-column:1 / -1}.aica-hint{font-size:10px}}
+
+/* Larger AICA introduction with two supporting posters. */
+.aica-gallery{grid-template-columns:3.6fr 1fr 1fr;gap:18px}
+.aica-image-1 img{object-fit:contain}
+.aica-image-2,.aica-image-4{height:78%}
+.aica-image-2 img,.aica-image-4 img{object-fit:fill}
+@media(max-width:900px){.aica-gallery{grid-template-columns:3.6fr 1fr 1fr;gap:12px}}
+@media(max-width:640px){.aica-gallery{grid-template-columns:repeat(2,1fr);grid-template-rows:1.5fr 1fr;gap:8px}.aica-image-1{grid-column:1 / -1}.aica-image-2,.aica-image-4{height:100%}.aica-image-2 img,.aica-image-4 img{object-fit:contain}}
+
+/* AICA editorial layout: large introduction left, copy and posters right. */
+.aica-editorial{display:grid;grid-template-columns:1.3fr 1fr;gap:4%;align-items:center}
+.aica-editorial>.aica-image-1{height:auto;aspect-ratio:16/9}.aica-editorial>.aica-image-1 img{object-fit:contain}
+.aica-side{min-width:0}.aica-side .project-description{font-size:clamp(12px,1.05vw,16px);line-height:1.85;margin:0 0 20px}
+.aica-support{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;height:clamp(130px,26svh,250px)}
+.aica-support .aica-image{height:100%}.aica-support .aica-image img{object-fit:fill}
+@media(max-width:900px){.aica-editorial{grid-template-columns:1.2fr 1fr;gap:3%}.aica-side .project-description{font-size:11px;line-height:1.75;margin-bottom:14px}.aica-support{height:180px;gap:8px}}
+@media(max-width:640px){.aica-editorial{grid-template-columns:1fr;gap:14px}.aica-editorial>.aica-image-1{max-height:23svh}.aica-side .project-description{font-size:10px;line-height:1.65}.aica-support{height:17svh}.aica-support .aica-image img{object-fit:contain}}
+.project-page.education-page{height:100svh;min-height:100svh;box-sizing:border-box;padding:115px 5.5% 75px;overflow:hidden}
+.education-inner{height:100%;max-width:1600px;margin:auto;display:flex;flex-direction:column;min-height:0}.education-page h1{font-size:clamp(25px,2.5vw,36px);margin:0 0 20px;flex:none}
+.education-page .project-description{flex:none;padding:0;font-size:clamp(12px,1.15vw,17px);line-height:1.9;margin:0 0 24px;align-self:auto}.education-page .project-description p{margin:0}.education-page strong{font-weight:600;color:var(--color-text-primary)}
+.education-gallery{flex:1;min-height:0;display:flex;flex-direction:column}.education-carousel{min-height:0}.education-toolbar{margin-bottom:0}.education-card{width:60%}.education-card img{object-fit:contain}.education-toolbar .education-prev,.education-toolbar .education-next{font-size:18px}
+@media(max-width:900px){.education-page .project-description{font-size:12px;line-height:1.8;margin-bottom:20px}.education-card{width:72%}}
+@media(max-width:640px){.project-page.education-page{padding:140px 6% 50px}.education-page h1{font-size:23px;margin-bottom:15px}.education-page .project-description{font-size:11px;line-height:1.75;margin-bottom:15px}.education-card{width:85%}}
+
+.education-toolbar{justify-content:flex-end}
+
+/* Closing composition echoes the landing page's organic monochrome forms. */
+.project-page.closing-page{height:100svh;min-height:100svh;padding:0;overflow:hidden;isolation:isolate}
+.closing-art{position:absolute;inset:0;width:100%;height:100%;color:var(--color-text-primary);z-index:-1;pointer-events:none}
+.closing-art-drift{transform-origin:center;animation:closing-drift 18s ease-in-out infinite alternate}
+@keyframes closing-drift{from{transform:translate(-10px,0) rotate(-2deg)}to{transform:translate(12px,-12px) rotate(2deg)}}
+.closing-copy{position:absolute;left:66%;right:5.5%;bottom:15%;color:var(--color-text-primary);font-family:ui-monospace,"SFMono-Regular",Menlo,"PingFang SC",monospace}
+.closing-copy h1{font:400 clamp(21px,2vw,32px)/1.5 ui-monospace,"SFMono-Regular",Menlo,monospace;margin:0 0 12px;white-space:nowrap}
+.closing-name{font-size:clamp(15px,1.3vw,20px);margin:0 0 13px}.closing-mail{display:block;color:inherit;font-size:clamp(10px,1vw,14px);text-decoration:none;white-space:nowrap}.closing-mail:hover{text-decoration:underline}.closing-home{display:inline-block;margin-top:30px;color:var(--color-text-muted);font:12px/1.5 "PingFang SC",sans-serif;text-decoration:none}.closing-home:hover{color:var(--color-text-primary)}
+@media(max-width:900px){.closing-copy{left:60%;right:4%;bottom:15%}.closing-copy h1{font-size:21px}.closing-art{width:125%;left:-25%}}
+@media(max-width:640px){.closing-copy{left:30%;right:6%;bottom:14%}.closing-copy h1{font-size:22px}.closing-art{width:160%;left:-60%;height:80%}.closing-mail{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.closing-art-drift{animation:none}}
+
+#closingLiquid,#closingPopEffects{position:absolute;inset:0;width:100%;height:100%;display:block}
+#closingLiquid{z-index:0;pointer-events:auto;touch-action:pan-y;cursor:crosshair;background:var(--page-bg)}#closingPopEffects{z-index:1;pointer-events:none}
+.closing-copy{z-index:2;left:58%;right:auto;top:57%;bottom:auto;width:344px;pointer-events:none;font-weight:300;line-height:1.25}
+.closing-copy h1{font:300 clamp(24px,2.5vw,36px)/1.25 ui-monospace,"SF Mono","SFMono-Regular",Menlo,monospace;letter-spacing:-.035em;margin:0 0 12px;pointer-events:auto;white-space:nowrap}
+.closing-copy a{pointer-events:auto}.closing-name{font-size:16px}.closing-mail{font-size:12px}
+body.closing-active.project-active .claire-mark{writing-mode:vertical-rl;text-orientation:upright;font-size:28px;letter-spacing:.12em}
+@media(max-width:900px){.closing-copy{left:58%;width:38%;right:4%}.closing-copy h1{font-size:25px}}
+@media(max-width:640px){.closing-copy{left:7%;top:auto;bottom:18%;width:86%;right:auto}.closing-copy h1{font-size:28px}}
